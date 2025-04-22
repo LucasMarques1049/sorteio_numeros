@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Jogo</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+	<h:form id="formulario">
+	<h3>Somente numeros de 1 ate 10</h3> 
+		<p:panelGrid columns="2">
+			<p:outputLabel value="v1" />
+			<p:inputNumber value="#{jogoBean.jogo.v1}" minValue="1" maxValue="10" decimalPlaces="0" required="true" />
+
+			<p:outputLabel value="v2" />
+			<p:inputNumber value="#{jogoBean.jogo.v2}" minValue="1" maxValue="10" decimalPlaces="0" required="true" />
+
+			<p:outputLabel value="v3" />
+			<p:inputNumber value="#{jogoBean.jogo.v3}" minValue="1" maxValue="10" decimalPlaces="0" required="true" />
+
+			<p:outputLabel value="v4" />
+			<p:inputNumber value="#{jogoBean.jogo.v4}" minValue="1" maxValue="10" decimalPlaces="0" required="true" />
+
+			<p:outputLabel value="v5" />
+			<p:inputNumber value="#{jogoBean.jogo.v5}" minValue="1" maxValue="10" decimalPlaces="0" required="true" />
+
+			<p:commandButton action="#{jogoBean.salvar()}" value="Salvar"
+				update="formulario :mensagem" icon="pi pi-fw pi-save" />
+			<p:link outcome="listagem" value="listar" />
+
+		</p:panelGrid>
+	</h:form>
+</h:body>
+
+</html>

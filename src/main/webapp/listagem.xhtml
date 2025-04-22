@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Lista de Jogos</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+	<h:form id="numeros">
+		<p:link outcome="index.xhtml" value="voltar" />
+		<p:dataTable id="tabela" value="#{jogoBean.lista}" var="j"
+			editable="true">
+
+			<p:ajax event="rowEdit" listener="#{jogoBean.atualizar(j)}"
+				update=":numeros:tabela" />
+
+
+			<p:column headerText="ID">
+				<p:outputLabel value="#{j.id}" />
+			</p:column>
+			<p:column headerText="V1">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.v1}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.v1}" minValue="1" maxValue="10"
+							decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="V2">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.v2}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.v2}" minValue="1" maxValue="10"
+							decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="V3">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.v3}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.v3}" minValue="1" maxValue="10"
+							decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="V4">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.v4}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.v4}" minValue="1" maxValue="10"
+							decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="V5">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.v5}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.v5}" minValue="1" maxValue="10"
+							decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Numero sorteado">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{j.numeroSorteado}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputNumber value="#{j.numeroSorteado}" minValue="1"
+							maxValue="10" decimalPlaces="0" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Data cadastro">
+				<p:outputLabel value="#{j.dataCadastro}" />
+			</p:column>
+			<p:column headerText="Editar e excliur">
+				<p:commandButton actionListener="#{jogoBean.excluir(j.id)}"
+					value="Excluir" update="numeros :mensagem" />
+				<p:rowEditor editTitle="Editar" cancelTitle="Cancelar"
+					saveTitle="Editar" />
+			</p:column>
+			<p:column headerText="Maior Numero">
+				<p:commandButton value="Maior numero"
+					actionListener="#{jogoBean.valorMaximoLinha(j)}"
+					update="numeros :mensagem" />
+			</p:column>
+			<p:column headerText="Result">
+				<p:commandButton value="Result"
+					actionListener="#{jogoBean.verificandoValorSorteado(j, j.numeroSorteado)}"
+					update="numeros :mensagem" />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:commandButton value="Maior valor sorteado"
+			actionListener="#{jogoBean.maiorValorSorteado()}"
+			update="numeros :mensagem" />
+	</h:form>
+</h:body>
+</html>
